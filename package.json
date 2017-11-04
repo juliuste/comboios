@@ -1,0 +1,49 @@
+{
+	"name": "comboios",
+	"description": "Comboios de Portugal (CP, Portugese Railways) API client.",
+	"version": "0.0.0",
+	"keywords": [
+		"cp",
+		"cp.pt",
+		"comboios",
+		"de",
+		"portugal",
+		"pt",
+		"railway",
+		"train",
+		"api",
+		"client"
+	],
+	"author": "Julius Tens <mail@juliustens.de>",
+	"homepage": "https://github.com/juliuste/comboios",
+	"repository": "juliuste/comboios",
+	"bugs": "https://github.com/juliuste/comboios/issues",
+	"main": "./index.js",
+	"files": [
+		"./index.js",
+		"./lib"
+	],
+	"dependencies": {
+		"got": "^7.1.0",
+		"lodash.isdate": "^4.0.1",
+		"lodash.isnumber": "^3.0.3",
+		"lodash.isstring": "^4.0.1",
+		"lodash.sortby": "^4.7.0",
+		"moment": "^2.19.1",
+		"moment-duration-format": "^1.3.0",
+		"moment-timezone": "^0.5.14",
+		"p-retry": "^1.0.0"
+	},
+	"devDependencies": {
+		"lodash.isobject": "^3.0.2",
+		"tape": "^4.7.0"
+	},
+	"scripts": {
+		"test": "node test.js",
+		"prepare": "npm test"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"license": "MIT"
+}
