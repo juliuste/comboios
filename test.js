@@ -65,7 +65,7 @@ tape('comboios', async (t) => {
 	t.ok(isStation(leg.destination), 'journey leg destination')
 	t.ok(isDate(leg.arrival), 'journey leg arrival')
 	t.ok(isDate(leg.departure), 'journey leg departure')
-	t.ok(+leg.arrival <= +leg.departure, 'journey leg arrival < departure')
+	t.ok(+leg.arrival >= +leg.departure, 'journey leg arrival > departure')
 	t.ok(isNumber(leg.trainNumber), 'journey leg trainNumber')
 	t.ok(isString(leg.service.code) && leg.service.code.length > 0, 'journey leg service code')
 	t.ok(isString(leg.service.name) && leg.service.name.length > 0, 'journey leg service name')
