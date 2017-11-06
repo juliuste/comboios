@@ -1,7 +1,7 @@
 {
 	"name": "comboios",
 	"description": "Comboios de Portugal (CP, Portugese Railways) API client.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"keywords": [
 		"cp",
 		"cp.pt",
@@ -20,8 +20,8 @@
 	"bugs": "https://github.com/juliuste/comboios/issues",
 	"main": "./index.js",
 	"files": [
-		"./index.js",
-		"./lib"
+		"index.js",
+		"lib/*"
 	],
 	"dependencies": {
 		"got": "^7.1.0",
