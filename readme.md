@@ -25,6 +25,10 @@ This package mostly returns data in the [*Friendly Public Transport Format*](htt
 - [`trains(trainNumber, date = new Date())`](docs/trains.md) - Schedule for a given train
 - [`journeys(origin, destination, date = new Date())`](docs/journeys.md) - Journeys between stations
 
+## See also
+
+- [build-cp-gtfs](https://github.com/juliuste/build-cp-gtfs) - Generate CP GTFS using this module
+
 ## Contributing
 
 If you found a bug, want to propose a feature or feel the urge to complain about your life, feel free to visit [the issues page](https://github.com/juliuste/comboios/issues).
