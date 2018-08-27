@@ -2,10 +2,10 @@
 
 const tape = require('tape')
 const comboios = require('./index')
-const isString = require('lodash.isstring')
-const isNumber = require('lodash.isnumber')
-const isDate = require('lodash.isdate')
-const isObject = require('lodash.isobject')
+const isString = require('lodash/isString')
+const isNumber = require('lodash/isNumber')
+const isDate = require('lodash/isDate')
+const isObject = require('lodash/isObject')
 const moment = require('moment-timezone')
 
 const isStation = (s) => s.type === 'station' && isString(s.id) && s.id.length > 4 && isString(s.name) && s.name.length > 1 // && isNumber(s.coordinates.longitude) && isNumber(s.coordinates.latitude)
