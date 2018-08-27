@@ -6,7 +6,6 @@ Client for the [Comboios de Porgual]() (CP, Portugese Railways) REST API. Inoffi
 [![Build Status](https://travis-ci.org/juliuste/comboios.svg?branch=master)](https://travis-ci.org/juliuste/comboios)
 [![Greenkeeper badge](https://badges.greenkeeper.io/juliuste/comboios.svg)](https://greenkeeper.io/)
 [![dependency status](https://img.shields.io/david/juliuste/comboios.svg)](https://david-dm.org/juliuste/comboios)
-[![dev dependency status](https://img.shields.io/david/dev/juliuste/comboios.svg)](https://david-dm.org/juliuste/comboios#info=devDependencies)
 [![license](https://img.shields.io/github/license/juliuste/comboios.svg?style=flat)](LICENSE)
 [![chat on gitter](https://badges.gitter.im/juliuste.svg)](https://gitter.im/juliuste)
 
