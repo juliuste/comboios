@@ -1,7 +1,7 @@
 'use strict'
 
 const tape = require('tape')
-const comboios = require('./index')
+const comboios = require('.')
 const isString = require('lodash/isString')
 const isNumber = require('lodash/isNumber')
 const isDate = require('lodash/isDate')
