@@ -1,12 +1,14 @@
 'use strict'
 
-const tape = require('tape')
-const comboios = require('.')
+const tapeWithoutPromise = require('tape')
+const addPromiseSupport = require('tape-promise').default
+const tape = addPromiseSupport(tapeWithoutPromise)
 const isString = require('lodash/isString')
 const isNumber = require('lodash/isNumber')
 const isDate = require('lodash/isDate')
 const isObject = require('lodash/isObject')
 const moment = require('moment-timezone')
+const comboios = require('.')
 
 const isStation = (s) => s.type === 'station' && isString(s.id) && s.id.length > 4 && isString(s.name) && s.name.length > 1 // && isNumber(s.coordinates.longitude) && isNumber(s.coordinates.latitude)
 const isTrainStop = (s) => isStation(s) && isDate(s.arrival) && isDate(s.departure) && +s.departure >= +s.arrival
