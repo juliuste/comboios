@@ -19,7 +19,7 @@ tape('comboios', async (t) => {
 	// stations
 	const stations = await comboios.stations()
 	t.ok(stations.length > 100, 'stations length')
-	const porto = stations.find((x) => x.name.indexOf('Porto')>=0)
+	const porto = stations.find((x) => x.name.indexOf('Porto') >= 0)
 	t.ok(porto.type === 'station', 'station type')
 	t.ok(isString(porto.id) && porto.id.length > 4, 'station id')
 	t.ok(isString(porto.name) && porto.name.length > 4, 'station name')
@@ -41,7 +41,6 @@ tape('comboios', async (t) => {
 	t.ok(isDate(departure.departure), 'departure departure')
 	t.ok(+departure.arrival <= +departure.departure, 'departure arrival < departure')
 
-
 	// trains
 	const train = await comboios.trains(departure.trainNumber, date)
 	t.ok(isNumber(train.trainNumber), 'train trainNumber')
@@ -50,12 +49,12 @@ tape('comboios', async (t) => {
 	t.ok(train.stops.every(isTrainStop), 'train stops')
 
 	// journeys
-	const lisboa = stations.find((x) => x.name.indexOf('Lisboa')>=0)
+	const lisboa = stations.find((x) => x.name.indexOf('Lisboa') >= 0)
 	const journeys = await comboios.journeys(lisboa, porto, date)
 	t.ok(journeys.length >= 1, 'journeys length')
 	const journey = journeys[0]
 	t.ok(journey.type === 'journey', 'journey type')
-	if(isObject(journey.price)){
+	if (isObject(journey.price)) {
 		t.ok(isNumber(journey.price.amount) && journey.price.amount > 0, 'journey price amount')
 		t.ok(journey.price.currency === 'EUR', 'journey price currency')
 		t.ok(isNumber(journey.price.class) && journey.price.class > 0, 'journey price class')
