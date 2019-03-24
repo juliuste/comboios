@@ -4,76 +4,85 @@ const tapeWithoutPromise = require('tape')
 const addPromiseSupport = require('tape-promise').default
 const tape = addPromiseSupport(tapeWithoutPromise)
 const isString = require('lodash/isString')
-const isNumber = require('lodash/isNumber')
-const isDate = require('lodash/isDate')
-const isObject = require('lodash/isObject')
 const moment = require('moment-timezone')
-const comboios = require('.')
+const validate = require('validate-fptf')()
 
-const isStation = (s) => s.type === 'station' && isString(s.id) && s.id.length > 4 && isString(s.name) && s.name.length > 1 // && isNumber(s.coordinates.longitude) && isNumber(s.coordinates.latitude)
-const isTrainStop = (s) => isStation(s) && isDate(s.arrival) && isDate(s.departure) && +s.departure >= +s.arrival
+const comboios = require('.')
 
 const isCP = (o) => o.type === 'operator' && o.id === 'cp' && o.name === 'Comboios de Portugal' && o.url === 'https://www.cp.pt/'
 
-tape('comboios', async (t) => {
-	// stations
+const portoCampanha = '94-2006'
+const vianaDoCastelo = '94-18002'
+const lisboaSantaApolonia = '94-30007'
+const when = moment.tz('Europe/Lisbon').add(3, 'days').startOf('day').add(9, 'hours').toDate()
+
+tape('comboios.stations', async t => {
 	const stations = await comboios.stations()
-	t.ok(stations.length > 100, 'stations length')
-	const porto = stations.find((x) => x.name.indexOf('Porto') >= 0)
-	t.ok(porto.type === 'station', 'station type')
-	t.ok(isString(porto.id) && porto.id.length > 4, 'station id')
-	t.ok(isString(porto.name) && porto.name.length > 4, 'station name')
-	t.ok(isNumber(porto.coordinates.longitude) && porto.coordinates.longitude < 0, 'station coordinates longitude')
-	t.ok(isNumber(porto.coordinates.latitude) && porto.coordinates.latitude > 0, 'station coordinates latitude')
+	t.ok(Array.isArray(stations), 'type')
+	t.ok(stations.length > 100, 'length')
+	stations.forEach(station => t.doesNotThrow(() => validate(station), 'valid fptf'))
+	const porto = stations.filter((x) => x.name.indexOf('Porto') >= 0)
+	t.ok(porto.length >= 3, 'porto stations')
+})
 
-	// departures
-	const date = moment.tz('Europe/Lisbon').add(3, 'days').toDate()
-	const departures = await comboios.departures(porto, date)
-	t.ok(departures.length > 2, 'departures length')
-	const departure = departures.find((x) => isObject(x.service))
-	t.ok(departure.type === 'departure', 'departure type')
-	t.ok(isNumber(departure.trainNumber), 'departure trainNumber')
-	t.ok(isString(departure.service.code) && departure.service.code.length > 0, 'departure service code')
-	t.ok(isString(departure.service.name) && departure.service.name.length > 0, 'departure service name')
-	t.ok(isStation(departure.origin), 'departure origin')
-	t.ok(isStation(departure.destination), 'departure destination')
-	t.ok(isDate(departure.arrival), 'departure arrival')
-	t.ok(isDate(departure.departure), 'departure departure')
-	t.ok(+departure.arrival <= +departure.departure, 'departure arrival < departure')
+tape('comboios.journeys', async t => {
+	const journeys = await comboios.journeys(lisboaSantaApolonia, portoCampanha, { when })
+	t.ok(Array.isArray(journeys), 'type')
+	t.ok(journeys.length >= 2, 'length')
+	journeys.forEach(journey => {
+		t.doesNotThrow(() => validate(journey), 'journey: valid fptf')
+		journey.legs.forEach(leg => {
+			t.ok(leg.mode === 'train', 'leg mode')
+			t.ok(isCP(leg.operator), 'leg operator')
+			t.doesNotThrow(() => validate(leg.line), 'line: valid fptf')
+			t.ok(leg.line.mode === 'train', 'leg line mode')
+			t.ok(isCP(leg.line.operator), 'leg line operator')
+			t.ok(isString(leg.line.product) && leg.line.product.length > 0, 'product')
+			t.ok(isString(leg.line.productCode) && leg.line.productCode.length > 0, 'product code')
+		})
+	})
+	t.ok(journeys.some(journey => !!journey.price), 'has price')
+})
 
-	// trains
-	const train = await comboios.trains(departure.trainNumber, date)
-	t.ok(isNumber(train.trainNumber), 'train trainNumber')
-	t.ok(isString(train.service.code) && train.service.code.length > 0, 'train service code')
-	t.ok(isString(train.service.name) && train.service.name.length > 0, 'train service name')
-	t.ok(train.stops.every(isTrainStop), 'train stops')
+tape('comboios.trip', async t => {
+	const [journey] = await comboios.journeys(portoCampanha, vianaDoCastelo, { when })
+	t.ok(journey && journey.type === 'journey', 'precondition')
+	t.doesNotThrow(() => validate(journey), 'precondition')
+	const { tripId } = journey.legs[0]
+	t.ok(isString(tripId) && tripId.length > 0, 'precondition')
 
-	// journeys
-	const lisboa = stations.find((x) => x.name.indexOf('Lisboa') >= 0)
-	const journeys = await comboios.journeys(lisboa, porto, date)
-	t.ok(journeys.length >= 1, 'journeys length')
-	const journey = journeys[0]
-	t.ok(journey.type === 'journey', 'journey type')
-	if (isObject(journey.price)) {
-		t.ok(isNumber(journey.price.amount) && journey.price.amount > 0, 'journey price amount')
-		t.ok(journey.price.currency === 'EUR', 'journey price currency')
-		t.ok(isNumber(journey.price.class) && journey.price.class > 0, 'journey price class')
-		// todo: price.fares
-	}
-	t.ok(journey.legs.length >= 1, 'journey legs length')
-	const leg = journey.legs.find((x) => isObject(x.service))
-	t.ok(isStation(leg.origin), 'journey leg origin')
-	t.ok(isStation(leg.destination), 'journey leg destination')
-	t.ok(isDate(leg.arrival), 'journey leg arrival')
-	t.ok(isDate(leg.departure), 'journey leg departure')
-	t.ok(+leg.arrival >= +leg.departure, 'journey leg arrival > departure')
-	t.ok(isNumber(leg.trainNumber), 'journey leg trainNumber')
-	t.ok(isString(leg.service.code) && leg.service.code.length > 0, 'journey leg service code')
-	t.ok(isString(leg.service.name) && leg.service.name.length > 0, 'journey leg service name')
-	t.ok(leg.stops.every(isTrainStop), 'journey leg stops')
-	t.ok(isCP(leg.operator), 'journey leg operator')
-	t.ok(leg.mode === 'train', 'journey leg mode')
-	t.ok(leg.public === true, 'journey leg public')
+	const trip = await (comboios.trip(tripId).catch(console.error))
+	t.ok(trip.id === tripId, 'id')
+	t.ok(trip.line && trip.line.type === 'line', 'line')
+	t.doesNotThrow(() => validate(trip.line), 'line: valid fptf')
+	t.ok(Array.isArray(trip.stopovers) && trip.stopovers.length >= 2, 'stopovers')
+	trip.stopovers.forEach(stopover => {
+		t.ok(stopover && stopover.type === 'stopover', 'stopover')
+		t.doesNotThrow(() => validate(stopover), 'stopover: valid fptf')
+	})
+})
 
-	t.end()
+tape('comboios.stopovers', async t => {
+	const stopovers = await comboios.stopovers(portoCampanha, { when })
+	t.ok(Array.isArray(stopovers), 'type')
+	t.ok(stopovers.length >= 10, 'length')
+	stopovers.forEach(stopover => {
+		t.doesNotThrow(() => validate(stopover), 'stopover: valid fptf')
+		t.ok(isString(stopover.tripId) && stopover.tripId.length > 0, 'tripId')
+		t.doesNotThrow(() => validate(stopover.line), 'line: valid fptf')
+		t.ok(stopover.line.mode === 'train', 'stopover line mode')
+		t.ok(isCP(stopover.line.operator), 'stopover line operator')
+		t.ok(isString(stopover.line.product) && stopover.line.product.length > 0, 'product')
+		t.ok(isString(stopover.line.productCode) && stopover.line.productCode.length > 0, 'product code')
+		if (stopover.provenance) {
+			t.ok(stopover.provenance.type === 'station', 'provenance type')
+			t.doesNotThrow(() => validate(stopover.provenance), 'provenance: valid fptf')
+		}
+		if (stopover.direction) {
+			t.ok(stopover.direction.type === 'station', 'direction type')
+			t.doesNotThrow(() => validate(stopover.direction), 'direction: valid fptf')
+		}
+	})
+	t.ok(stopovers.some(st => !!st.provenance), 'has provenance')
+	t.ok(stopovers.some(st => !!st.direction), 'has direction')
 })

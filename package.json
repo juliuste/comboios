@@ -31,12 +31,12 @@
 		"test": "npm run lint && npm run check-deps && node test"
 	},
 	"dependencies": {
-		"got": "^9.1.0",
-		"lodash": "^4.17.10",
-		"moment": "^2.22.2",
+		"got": "^9.6.0",
+		"lodash": "^4.17.11",
+		"moment": "^2.24.0",
 		"moment-duration-format": "^2.2.2",
-		"moment-timezone": "^0.5.21",
-		"p-retry": "^2.0.0"
+		"moment-timezone": "^0.5.23",
+		"p-retry": "^4.0.0"
 	},
 	"devDependencies": {
 		"depcheck": "^0.7.2",
@@ -47,7 +47,8 @@
 		"eslint-plugin-promise": "^4.0.1",
 		"eslint-plugin-standard": "^4.0.0",
 		"tape": "^4.10.1",
-		"tape-promise": "^4.0.0"
+		"tape-promise": "^4.0.0",
+		"validate-fptf": "^3.0.0"
 	},
 	"engines": {
 		"node": ">=8"
