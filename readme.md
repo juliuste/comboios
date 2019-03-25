@@ -30,6 +30,7 @@ This package contains data in the [*Friendly Public Transport Format*](https://g
 
 ## See also
 
+- [build-cp-gtfs](https://github.com/juliuste/build-cp-gtfs) - Generate CP GTFS using this module
 - [european-transport-operators](https://github.com/public-transport/european-transport-operators) - List of european long-distance transport operators, available API endpoints, GTFS feeds and client modules.
 
 ## Contributing
