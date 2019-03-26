@@ -43,12 +43,18 @@ comboios.journeys(porto, lisboa, { when: new Date('2019-05-09T09:00:00') })
                 "origin": {
                     "type": "station",
                     "id": "94-2006",
-                    "name": "Porto - Campanha"
+                    "uicId": "9402006",
+                    "name": "Porto - Campanha",
+                    "timezone": "Europe/Lisbon",
+                    "country": "PT"
                 },
                 "destination": {
                     "type": "station",
                     "id": "94-30007",
-                    "name": "Lisboa - Santa Apolonia"
+                    "uicId": "9430007",
+                    "name": "Lisboa - Santa Apolonia",
+                    "timezone": "Europe/Lisbon",
+                    "country": "PT"
                 },
                 "departure": "2019-05-08T23:55:00.000Z",
                 "departurePlatform": null,
@@ -83,7 +89,10 @@ comboios.journeys(porto, lisboa, { when: new Date('2019-05-09T09:00:00') })
                         "stop": {
                             "type": "station",
                             "id": "94-2006",
-                            "name": "Porto - Campanha"
+                            "uicId": "9402006",
+                            "name": "Porto - Campanha",
+                            "timezone": "Europe/Lisbon",
+                            "country": "PT"
                         },
                         "arrival": "2019-05-08T23:55:00.000Z",
                         "arrivalPlatform": null,
@@ -95,7 +104,10 @@ comboios.journeys(porto, lisboa, { when: new Date('2019-05-09T09:00:00') })
                         "stop": {
                             "type": "station",
                             "id": "94-39172",
-                            "name": "General Torres"
+                            "uicId": "9439172",
+                            "name": "General Torres",
+                            "timezone": "Europe/Lisbon",
+                            "country": "PT"
                         },
                         "arrival": "2019-05-08T23:58:00.000Z",
                         "arrivalPlatform": null,
@@ -108,7 +120,10 @@ comboios.journeys(porto, lisboa, { when: new Date('2019-05-09T09:00:00') })
                         "stop": {
                             "type": "station",
                             "id": "94-30007",
-                            "name": "Lisboa - Santa Apolonia"
+                            "uicId": "9430007",
+                            "name": "Lisboa - Santa Apolonia",
+                            "timezone": "Europe/Lisbon",
+                            "country": "PT"
                         },
                         "arrival": "2019-05-09T04:59:00.000Z",
                         "arrivalPlatform": null,

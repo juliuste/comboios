@@ -17,32 +17,41 @@ comboios.stations()
     {
         "type": "station",
         "id": "94-52001",
+        "uicId": "9452001",
         "name": "Abrantes",
         "location": {
             "type": "location",
             "longitude": -8.19376659393311,
             "latitude": 39.4396858215332
-        }
+        },
+        "timezone": "Europe/Lisbon",
+        "country": "PT"
     },
     {
         "type": "station",
         "id": "94-36046",
+        "uicId": "9436046",
         "name": "Ademia",
         "location": {
             "type": "location",
             "longitude": -8.45053958892822,
             "latitude": 40.2503356933594
-        }
+        },
+        "timezone": "Europe/Lisbon",
+        "country": "PT"
     },
     {
         "type": "station",
         "id": "94-18119",
+        "uicId": "9418119",
         "name": "Afife",
         "location": {
             "type": "location",
             "longitude": -8.86222076416016,
             "latitude": 41.7782096862793
-        }
+        },
+        "timezone": "Europe/Lisbon",
+        "country": "PT"
     }
     // …
 ]

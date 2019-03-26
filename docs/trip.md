@@ -36,7 +36,10 @@ comboios.trip('3400@2019-05-09')
             "stop": {
                 "type": "station",
                 "id": "94-2006",
-                "name": "Porto - Campanha"
+                "uicId": "9402006",
+                "name": "Porto - Campanha",
+                "timezone": "Europe/Lisbon",
+                "country": "PT"
             },
             "arrival": "2019-05-08T23:00:00.000Z",
             "arrivalPlatform": null,
@@ -48,7 +51,10 @@ comboios.trip('3400@2019-05-09')
             "stop": {
                 "type": "station",
                 "id": "94-39172",
-                "name": "General Torres"
+                "uicId": "9439172",
+                "name": "General Torres",
+                "timezone": "Europe/Lisbon",
+                "country": "PT"
             },
             "arrival": "2019-05-08T23:58:00.000Z",
             "arrivalPlatform": null,
@@ -61,7 +67,10 @@ comboios.trip('3400@2019-05-09')
             "stop": {
                 "type": "station",
                 "id": "94-30007",
-                "name": "Lisboa - Santa Apolonia"
+                "uicId": "9430007",
+                "name": "Lisboa - Santa Apolonia",
+                "timezone": "Europe/Lisbon",
+                "country": "PT"
             },
             "arrival": "2019-05-09T04:59:00.000Z",
             "arrivalPlatform": null,

@@ -6,6 +6,7 @@ const tape = addPromiseSupport(tapeWithoutPromise)
 const isString = require('lodash/isString')
 const moment = require('moment-timezone')
 const validate = require('validate-fptf')()
+const isUicLocationCode = require('is-uic-location-code')
 
 const comboios = require('.')
 
@@ -20,9 +21,19 @@ tape('comboios.stations', async t => {
 	const stations = await comboios.stations()
 	t.ok(Array.isArray(stations), 'type')
 	t.ok(stations.length > 100, 'length')
-	stations.forEach(station => t.doesNotThrow(() => validate(station), 'valid fptf'))
+	stations.forEach(station => {
+		t.doesNotThrow(() => validate(station), 'valid fptf')
+		t.ok(isUicLocationCode(station.uicId), 'uicId')
+		t.ok(station.country.length === 2, 'country')
+		t.ok(!!moment.tz.zone(station.timezone), 'timezone')
+	})
 	const porto = stations.filter((x) => x.name.indexOf('Porto') >= 0)
 	t.ok(porto.length >= 3, 'porto stations')
+	t.ok(porto.every(p => p.timezone === 'Europe/Lisbon'), 'porto timezones')
+
+	const madrid = stations.filter((x) => x.name.indexOf('Madrid') >= 0)
+	t.ok(madrid.length >= 1, 'madrid stations')
+	t.ok(madrid.every(p => p.timezone === 'Europe/Madrid'), 'madrid timezones')
 })
 
 tape('comboios.journeys', async t => {
