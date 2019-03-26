@@ -33,8 +33,6 @@
 	"dependencies": {
 		"got": "^9.6.0",
 		"lodash": "^4.17.11",
-		"moment": "^2.24.0",
-		"moment-duration-format": "^2.2.2",
 		"moment-timezone": "^0.5.23",
 		"p-retry": "^4.0.0",
 		"uic-codes": "^0.3.0",
