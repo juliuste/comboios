@@ -39,7 +39,7 @@
 		"zero-fill": "^2.2.3"
 	},
 	"devDependencies": {
-		"depcheck": "^0.7.2",
+		"depcheck": "^0.8.0",
 		"eslint": "^5.15.3",
 		"eslint-config-standard": "^12.0.0",
 		"eslint-plugin-import": "^2.16.0",
