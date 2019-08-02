@@ -1,6 +1,6 @@
 {
 	"name": "comboios",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Comboios de Portugal (CP, Portugese Railways) API client.",
 	"keywords": [
 		"api",
