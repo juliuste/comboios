@@ -31,7 +31,7 @@
 		"test": "npm run lint && npm run check-deps && node test"
 	},
 	"dependencies": {
-		"got": "^9.6.0",
+		"got": "^11.1.4",
 		"lodash": "^4.17.15",
 		"moment-timezone": "^0.5.26",
 		"p-retry": "^4.1.0",
