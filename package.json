@@ -33,7 +33,7 @@
 	"dependencies": {
 		"got": "^9.6.0",
 		"lodash": "^4.17.15",
-		"moment-timezone": "^0.5.26",
+		"moment-timezone": "^0.5.30",
 		"p-retry": "^4.1.0",
 		"uic-codes": "^0.3.0",
 		"zero-fill": "^2.2.3"
