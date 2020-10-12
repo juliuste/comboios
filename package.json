@@ -19,10 +19,10 @@
 	"repository": "juliuste/comboios",
 	"license": "ISC",
 	"author": "Julius Tens <mail@juliustens.eu>",
+	"main": "lib/index.js",
 	"files": [
 		"lib/*"
 	],
-	"main": "lib/index.js",
 	"scripts": {
 		"check-deps": "depcheck",
 		"fix": "eslint --fix lib test.js",
@@ -52,6 +52,6 @@
 		"validate-fptf": "^3.0.0"
 	},
 	"engines": {
-		"node": ">=8"
+		"node": ">=10"
 	}
 }
