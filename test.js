@@ -31,9 +31,9 @@ tape('comboios.stations', async t => {
 	t.ok(porto.length >= 3, 'porto stations')
 	t.ok(porto.every(p => p.timezone === 'Europe/Lisbon'), 'porto timezones')
 
-	const madrid = stations.filter((x) => x.name.indexOf('Madrid') >= 0)
-	t.ok(madrid.length >= 1, 'madrid stations')
-	t.ok(madrid.every(p => p.timezone === 'Europe/Madrid'), 'madrid timezones')
+	const vigoGuixar = stations.filter((x) => x.name.toLowerCase().indexOf('vigo-guixar') >= 0)
+	t.ok(vigoGuixar.length >= 1, 'vigo-guixar stations')
+	t.ok(vigoGuixar.every(p => p.timezone === 'Europe/Madrid'), 'vigo-guixar timezones')
 })
 
 tape('comboios.journeys', async t => {
