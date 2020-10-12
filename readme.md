@@ -4,7 +4,6 @@ JavaScript client for the Portugese 🇵🇹 [Comboios de Portugal (CP)](https:/
 
 [![npm version](https://img.shields.io/npm/v/comboios.svg)](https://www.npmjs.com/package/comboios)
 [![Build Status](https://travis-ci.org/juliuste/comboios.svg?branch=master)](https://travis-ci.org/juliuste/comboios)
-[![Greenkeeper badge](https://badges.greenkeeper.io/juliuste/comboios.svg)](https://greenkeeper.io/)
 [![license](https://img.shields.io/github/license/juliuste/comboios.svg?style=flat)](license)
 
 ## Installation
