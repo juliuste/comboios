@@ -32,22 +32,22 @@
 	},
 	"dependencies": {
 		"got": "^9.6.0",
-		"lodash": "^4.17.15",
+		"lodash": "^4.17.20",
 		"moment-timezone": "^0.5.26",
-		"p-retry": "^4.1.0",
+		"p-retry": "^4.2.0",
 		"uic-codes": "^0.3.0",
-		"zero-fill": "^2.2.3"
+		"zero-fill": "^2.2.4"
 	},
 	"devDependencies": {
-		"depcheck": "^0.9.0",
-		"eslint": "^6.4.0",
-		"eslint-config-standard": "^14.1.0",
-		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-node": "^10.0.0",
+		"depcheck": "^1.2.0",
+		"eslint": "^7.11.0",
+		"eslint-config-standard": "^14.1.1",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-standard": "^4.0.1",
-		"is-uic-location-code": "^0.0.1",
-		"tape": "^4.11.0",
+		"is-uic-location-code": "0.0.1",
+		"tape": "^5.0.1",
 		"tape-promise": "^4.0.0",
 		"validate-fptf": "^3.0.0"
 	},
